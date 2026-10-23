@@ -1,4 +1,4 @@
-[24/10/2026 01:22] Sidali La: ---
+[24/10/2026 01:45] Sidali La: ---
 // src/pages/index.astro
 ---
 
@@ -8,13 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portail TRANSSTAR LAIOURATE - Gestion des Documents</title>
-    <!-- تضمين Tailwind CSS للتصميم -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- تضمين أيقونات FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
     <style>
-        /* إعدادات الطباعة: إخفاء القوائم الجانبية عند طباعة الفاتورة */
         @media print {
             body * { visibility: hidden; }
             #printable-invoice, #printable-invoice * { visibility: visible; }
@@ -24,8 +20,6 @@
     </style>
 </head>
 <body class="bg-slate-50 font-sans flex h-screen overflow-hidden text-slate-800">
-
-    <!-- القائمة الجانبية (Sidebar) -->
     <aside class="w-64 bg-slate-900 text-white flex flex-col no-print transition-all duration-300">
         <div class="p-6 border-b border-slate-700">
             <h1 class="text-xl font-black tracking-wider text-blue-400">TRANSSTAR<br><span class="text-white">LAIOURATE</span></h1>
@@ -35,142 +29,84 @@
             <a href="#" class="flex items-center space-x-3 bg-blue-600 text-white p-3 rounded-lg shadow-md">
                 <i class="fas fa-file-invoice"></i> <span>Éditeur de Factures</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 text-slate-300 hover:bg-slate-800 p-3 rounded-lg transition">
-                <i class="fas fa-folder-open"></i> <span>Tous les Documents</span>
-            </a>
-            <a href="#" class="flex items-center space-x-3 text-slate-300 hover:bg-slate-800 p-3 rounded-lg transition">
-                <i class="fas fa-truck-loading"></i> <span>Suivi Logistique</span>
-            </a>
-            <a href="#" class="flex items-center space-x-3 text-slate-300 hover:bg-slate-800 p-3 rounded-lg transition">
-                <i class="fas fa-chart-line"></i> <span>Statistiques</span>
-            </a>
         </nav>
-        <div class="p-4 border-t border-slate-700 text-sm text-slate-400">
-            <i class="fas fa-user-circle mr-2"></i> Admin Panel
-        </div>
     </aside>
 
-    <!-- منطقة المحتوى الرئيسي -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <!-- الشريط العلوي (Header) -->
         <header class="bg-white shadow-sm border-b border-slate-200 p-4 flex justify-between items-center no-print">
             <h2 class="text-2xl font-bold text-slate-800">Création de Document</h2>
             <div class="flex space-x-4 items-center">
                 <span class="text-sm font-medium text-slate-500">Date: <span id="current-date"></span></span>
-                <button class="bg-slate-100 p-2 rounded-full text-slate-600 hover:bg-slate-200"><i class="fas fa-bell"></i></button>
             </div>
         </header>
 
-        <!-- مساحة العمل: تنقسم إلى قسمين (الإدخال و العرض) -->
         <div class="flex-1 overflow-auto p-6 flex flex-col lg:flex-row gap-6">
-            
-            <!-- نموذج إدخال بيانات الفاتورة -->
             <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 lg:w-1/3 no-print h-fit">
                 <h3 class="text-lg font-bold mb-4 text-blue-900 border-b pb-2"><i class="fas fa-pen mr-2"></i>Détails de la Facture</h3>
-                
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1">Nom du Client / Entreprise</label>
-[24/10/2026 01:22] Sidali La: <input type="text" id="input-client" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Ex: Sarl Exemple" value="Sarl Alpha Transport">
+                        <label class="block text-sm font-semibold text-slate-600 mb-1">Nom du Client</label>
+                        <input type="text" id="input-client" class="w-full border border-slate-300 rounded-lg p-2" value="Sarl Alpha Transport">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1">Description du Service</label>
-                        <input type="text" id="input-desc" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Ex: Transport de marchandises" value="Transport de marchandises Alger - Oran">
+                        <label class="block text-sm font-semibold text-slate-600 mb-1">Description</label>
+                        <input type="text" id="input-desc" class="w-full border border-slate-300 rounded-lg p-2" value="Transport de marchandises">
                     </div>
                     <div class="flex gap-4">
                         <div class="w-1/2">
                             <label class="block text-sm font-semibold text-slate-600 mb-1">Quantité</label>
-                            <input type="number" id="input-qty" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" value="1">
+                            <input type="number" id="input-qty" class="w-full border border-slate-300 rounded-lg p-2" value="1">
                         </div>
                         <div class="w-1/2">
-                            <label class="block text-sm font-semibold text-slate-600 mb-1">Prix Unitaire (DZD)</label>
-                            <input type="number" id="input-price" class="w-full border border-slate-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none" value="45000">
+                            <label class="block text-sm font-semibold text-slate-600 mb-1">Prix Unitaire</label>
+                            <input type="number" id="input-price" class="w-full border border-slate-300 rounded-lg p-2" value="45000">
                         </div>
                     </div>
-                    
-                    <button id="update-btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition mt-4 shadow-md">
-                        <i class="fas fa-sync-alt mr-2"></i> Mettre à jour l'aperçu
-                    </button>
-                    <button id="print-btn" class="w-full bg-slate-800 text-white font-bold py-3 rounded-lg hover:bg-slate-900 transition mt-2 shadow-md">
-                        <i class="fas fa-file-pdf mr-2"></i> Enregistrer en PDF / Imprimer
-                    </button>
+                    <button id="update-btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg mt-4 shadow-md">Mettre à jour l'aperçu</button>
+                    <button id="print-btn" class="w-full bg-slate-800 text-white font-bold py-3 rounded-lg mt-2 shadow-md">Enregistrer en PDF</button>
                 </div>
             </section>
-
-            <!-- معاينة الفاتورة (سيتم طباعتها) -->
-            <section class="bg-slate-200 p-6 rounded-xl border border-slate-300 lg:w-2/3 flex justify-center overflow-auto no-print">
-                <!-- الورقة الفعلية للفاتورة -->
+[24/10/2026 01:45] Sidali La: <section class="bg-slate-200 p-6 rounded-xl border border-slate-300 lg:w-2/3 flex justify-center overflow-auto no-print">
                 <div id="printable-invoice" class="bg-white w-full max-w-3xl p-10 shadow-2xl rounded-sm">
-                    
-                    <!-- رأس الفاتورة -->
                     <div class="flex justify-between items-start border-b-2 border-blue-900 pb-6 mb-6">
                         <div>
                             <h1 class="text-3xl font-black text-blue-900">TRANSSTAR LAIOURATE</h1>
-                            <p class="text-sm text-slate-500 mt-1">Logistique & Transport Professionnel</p>
-                            <p class="text-sm text-slate-500">NIF: 0000123456789 | RC: 12/3456</p>
-                            <p class="text-sm text-slate-500">Alger, Algérie</p>
+                            <p class="text-sm text-slate-500">NIF: "0000123456789" | RC: 12/3456</p>
                         </div>
                         <div class="text-right">
                             <h2 class="text-4xl font-bold text-slate-200 uppercase tracking-widest">Facture</h2>
-                            <p class="text-slate-800 font-bold mt-2">N° FACT: <span class="text-blue-600">F-2026-001</span></p>
                             <p class="text-sm text-slate-500">Date: <span id="invoice-date"></span></p>
                         </div>
                     </div>
-
-                    <!-- معلومات العميل -->
                     <div class="mb-8">
                         <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Facturé à :</h3>
-                        <div class="bg-slate-50 p-4 rounded border border-slate-100">
-                            <p id="display-client" class="text-xl font-bold text-slate-800">Sarl Alpha Transport</p>
-                        </div>
+                        <p id="display-client" class="text-xl font-bold text-slate-800">Sarl Alpha Transport</p>
                     </div>
-[24/10/2026 01:22] Sidali La: <!-- جدول المشتريات/الخدمات -->
                     <table class="w-full mb-8 text-left border-collapse">
                         <thead>
                             <tr class="bg-blue-900 text-white">
-                                <th class="p-3 text-sm font-semibold rounded-tl-lg">Description</th>
+                                <th class="p-3 text-sm font-semibold">Description</th>
                                 <th class="p-3 text-sm font-semibold">Qté</th>
-                                <th class="p-3 text-sm font-semibold">Prix Unitaire</th>
-                                <th class="p-3 text-sm font-semibold rounded-tr-lg text-right">Total HT</th>
+                                <th class="p-3 text-sm font-semibold">Prix</th>
+                                <th class="p-3 text-sm font-semibold text-right">Total HT</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="border-b border-slate-200">
-                                <td id="display-desc" class="p-3 text-slate-800">Transport de marchandises Alger - Oran</td>
-                                <td id="display-qty" class="p-3 text-slate-800">1</td>
-                                <td id="display-price" class="p-3 text-slate-800">45 000,00 DZD</td>
-                                <td id="display-total" class="p-3 text-slate-800 font-bold text-right">45 000,00 DZD</td>
+                                <td id="display-desc" class="p-3">Transport de marchandises</td>
+                                <td id="display-qty" class="p-3">1</td>
+                                <td id="display-price" class="p-3">45 000,00 DZD</td>
+                                <td id="display-total" class="p-3 font-bold text-right">45 000,00 DZD</td>
                             </tr>
                         </tbody>
                     </table>
-
-                    <!-- المجموع -->
                     <div class="flex justify-end mb-12">
                         <div class="w-1/2">
-                            <div class="flex justify-between p-2 border-b border-slate-200">
-                                <span class="font-bold text-slate-600">Total HT:</span>
-                                <span id="summary-ht" class="font-bold text-slate-800">45 000,00 DZD</span>
-                            </div>
-                            <div class="flex justify-between p-2 border-b border-slate-200">
-                                <span class="font-bold text-slate-600">TVA (19%):</span>
-                                <span id="summary-tva" class="font-bold text-slate-800">8 550,00 DZD</span>
-                            </div>
+                            <div class="flex justify-between p-2 border-b"><span class="font-bold">Total HT:</span><span id="summary-ht" class="font-bold">45 000,00 DZD</span></div>
+                            <div class="flex justify-between p-2 border-b"><span class="font-bold">TVA (19%):</span><span id="summary-tva" class="font-bold">8 550,00 DZD</span></div>
                             <div class="flex justify-between p-3 bg-blue-50 mt-2 rounded border border-blue-200">
-                                <span class="font-black text-blue-900 text-lg">Net à Payer (TTC):</span>
-                                <span id="summary-ttc" class="font-black text-blue-900 text-lg">53 550,00 DZD</span>
+                                <span class="font-black text-blue-900 text-lg">Net à Payer:</span><span id="summary-ttc" class="font-black text-blue-900 text-lg">53 550,00 DZD</span>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- التوقيع والشروط -->
-                    <div class="flex justify-between items-end mt-10 pt-6 border-t border-slate-200">
-                        <div class="text-xs text-slate-400 w-1/2">
-                            <p>Conditions de paiement : 30 jours à réception.</p>
-                            <p>Veuillez libeller vos chèques à l'ordre de TRANSSTAR LAIOURATE.</p>
-                        </div>
-                        <div class="text-center">
-                            <p class="font-bold text-slate-800 mb-8">Cachet et Signature</p>
-                            <div class="border-b border-slate-400 w-40 mx-auto"></div>
                         </div>
                     </div>
                 </div>
@@ -178,31 +114,24 @@
         </div>
     </main>
 
-    <!-- أكواد جافاسكريبت لجعل الفاتورة تتحدث ديناميكياً -->
     <script>
-        // إعداد التاريخ الحالي
         const today = new Date().toLocaleDateString('fr-FR');
         document.getElementById('current-date').innerText = today;
         document.getElementById('invoice-date').innerText = today;
 
-        // دالة تحديث الفاتورة
         function updateInvoice() {
-            // جلب البيانات من المدخلات
             const client = document.getElementById('input-client').value;
             const desc = document.getElementById('input-desc').value;
             const qty = parseFloat(document.getElementById('input-qty').value) || 0;
             const price = parseFloat(document.getElementById('input-price').value) || 0;
-"24/10/2026" 01:22 Sidali La: // الحسابات
+
             const totalHT = qty * price;
             const tva = totalHT * 0.19;
             const totalTTC = totalHT + tva;
+[24/10/2026 01:45] Sidali La: const formatMoney = (amount) => new Intl.NumberFormat('fr-DZ', { minimumFractionDigits: 2 }).format(amount) + ' DZD';
 
-            // تنسيق الأرقام كعملة دينار جزائري
-            const formatMoney = (amount) => new Intl.NumberFormat('fr-DZ', { minimumFractionDigits: 2 }).format(amount) + ' DZD';
-
-            // عرض البيانات في الفاتورة
-            document.getElementById('display-client').innerText = client || 'Client Anonyme';
-            document.getElementById('display-desc').innerText = desc || 'Service de base';
+            document.getElementById('display-client').innerText = client;
+            document.getElementById('display-desc').innerText = desc;
             document.getElementById('display-qty').innerText = qty;
             document.getElementById('display-price').innerText = formatMoney(price);
             document.getElementById('display-total').innerText = formatMoney(totalHT);
@@ -212,12 +141,9 @@
             document.getElementById('summary-ttc').innerText = formatMoney(totalTTC);
         }
 
-        // ربط زر التحديث
         document.getElementById('update-btn').addEventListener('click', updateInvoice);
-
-        // ربط زر الطباعة/تحميل PDF
         document.getElementById('print-btn').addEventListener('click', () => {
-            updateInvoice(); // تحديث أخير قبل الطباعة
+            updateInvoice();
             window.print();
         });
     </script>
