@@ -1,378 +1,974 @@
-[24/10/2026 01:45] Sidali La: ---
-// src/pages/index.astro
----
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portail TRANSSTAR LAIOURATE - Gestion des Documents</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Transport de marchandises & convois lourds à Ghardaïa | TRANS★STAR LAIOURATE</title>
+    <meta
+      name="description"
+      content="TRANSSTAR LAIOURATE, transporteur à Ghardaïa depuis 2012 : convois exceptionnels, matériel industriel, vrac et livraisons sur sites pétroliers partout en Algérie."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://www.transstar-laiorate.dz/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_DZ" />
+    <meta property="og:site_name" content="TRANSSTAR LAIOURATE" />
+    <meta property="og:title" content="Transport de marchandises & convois lourds — TRANS★STAR" />
+    <meta
+      property="og:description"
+      content="Convois exceptionnels, matériel industriel et transport national depuis Ghardaïa. Références : SONATRACH, ALFAPIPE."
+    />
+    <meta property="og:url" content="https://www.transstar-laiorate.dz/" />
+    <meta property="og:image" content="https://www.transstar-laiorate.dz/og-image.png" />
+    <meta name="theme-color" content="#0c1b2a" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C1B2A'/%3E%3Cpath d='M32 14l5.2 10.9 11.8 1.6-8.6 8.3 2.1 11.7L32 40.9l-10.5 5.6 2.1-11.7-8.6-8.3 11.8-1.6z' fill='%23F97316'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Archivo:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://www.transstar-laiorate.dz/#entreprise",
+            "name": "TRANSSTAR LAIOURATE",
+            "alternateName": "TRANSSTAR",
+            "description": "Transport de marchandises et convois lourds en Algérie depuis 2012.",
+            "url": "https://www.transstar-laiorate.dz/",
+            "telephone": "+213697056401",
+            "email": "tronsstar91@gmail.com",
+            "foundingDate": "2012",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Ghardaïa",
+              "addressRegion": "Ghardaïa",
+              "addressCountry": "DZ"
+            },
+            "geo": { "@type": "GeoCoordinates", "latitude": 32.4909, "longitude": 3.6735 },
+            "areaServed": { "@type": "Country", "name": "Algérie" },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+                "opens": "08:00",
+                "closes": "18:00"
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Quels types de marchandises transportez-vous ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Matériel industriel, structures métalliques, engins, vrac et matériaux de construction, ainsi que des convois exceptionnels hors gabarit."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Intervenez-vous en dehors de Ghardaïa ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui. Nous réalisons des transports sur l'ensemble du territoire national, y compris vers les sites industriels et pétroliers du Sud."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Gérez-vous les autorisations pour les convois exceptionnels ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Oui : étude d'itinéraire, démarches d'autorisation de circulation et, si nécessaire, escortes."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Comment obtenir un devis ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Via le formulaire de devis, par téléphone ou sur WhatsApp. Nous répondons généralement sous 24 heures ouvrées."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+
     <style>
-        @media print {
-            body * { visibility: hidden; }
-            #printable-invoice, #printable-invoice * { visibility: visible; }
-            #printable-invoice { position: absolute; left: 0; top: 0; width: 100%; }
-            .no-print { display: none !important; }
-        }
+      :root {
+        --navy: #0c1b2a;
+        --navy2: #14385f;
+        --accent: #f97316;
+        --accent2: #fbbf24;
+        --bg: #f5f7fa;
+        --line: #e2e8f0;
+        --muted: #5a6b80;
+        --text: #122131;
+        --ok: #16a34a;
+      }
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0; background: var(--bg); color: var(--text);
+        font-family: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+        font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 { font-family: 'Archivo', 'Manrope', sans-serif; line-height: 1.22; letter-spacing: -.4px; margin: 0 0 12px; color: var(--navy); }
+      p { margin: 0 0 14px; }
+      a { color: inherit; }
+      ul { margin: 0; padding: 0; list-style: none; }
+      img { max-width: 100%; display: block; }
+      section[id] { scroll-margin-top: 86px; }
+      .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 22px; }
+
+      .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+        padding: 13px 24px; border-radius: 12px; border: 1px solid transparent;
+        font: inherit; font-weight: 700; font-size: 15px; text-decoration: none; cursor: pointer;
+        transition: transform .18s, box-shadow .18s, background .18s; }
+      .btn-primary { background: linear-gradient(135deg, var(--accent), #fb923c); color: #fff; box-shadow: 0 16px 30px -18px rgba(249,115,22,.95); }
+      .btn-primary:hover { transform: translateY(-2px); }
+      .btn-line { background: #fff; color: var(--navy); border-color: var(--line); }
+      .btn-line:hover { border-color: var(--accent); color: var(--accent); }
+      .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border-color: rgba(255,255,255,.22); }
+      .btn-ghost:hover { background: rgba(255,255,255,.18); }
+      .btn-wa { background: #25d366; color: #fff; }
+      .btn-wa:hover { background: #1ebe5b; transform: translateY(-2px); }
+
+      /* header */
+      .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.94);
+        backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+      .header-inner { display: flex; align-items: center; gap: 22px; min-height: 74px; }
+      .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; margin-right: auto; }
+      .brand-logo { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+        font-size: 20px; background: linear-gradient(135deg, var(--navy), var(--navy2)); color: #fff; }
+      .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+      .brand-text b { font-family: 'Archivo', sans-serif; font-size: 17px; letter-spacing: .4px; color: var(--navy); }
+      .brand-text small { font-size: 10.5px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--muted); }
+      .nav { display: flex; align-items: center; gap: 4px; }
+      .nav a { padding: 9px 12px; border-radius: 9px; font-size: 14.5px; font-weight: 600;
+        color: #33465f; text-decoration: none; }
+      .nav a:hover { background: #f1f5fa; color: var(--navy); }
+      .header-cta { padding: 10px 18px; font-size: 14px; white-space: nowrap; }
+      .burger { display: none; background: #fff; border: 1px solid var(--line); border-radius: 10px;
+        width: 42px; height: 42px; font-size: 19px; cursor: pointer; color: var(--navy); }
+
+      /* hero */
+      .hero { position: relative; overflow: hidden; color: #fff; padding: 86px 0 76px;
+        background: radial-gradient(900px 400px at 88% -30%, #1e5189 0%, rgba(30,81,137,0) 62%),
+          linear-gradient(135deg, #0a1826 0%, #123a63 58%, #0d2a4a 100%); }
+      .hero::after { content: ''; position: absolute; left: -120px; bottom: -200px; width: 460px; height: 460px;
+        border-radius: 50%; background: radial-gradient(circle, rgba(249,115,22,.34), rgba(249,115,22,0) 68%); }
+      .hero-inner { position: relative; z-index: 2; max-width: 780px; }
+      .hero-badge { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1.4px;
+        text-transform: uppercase; padding: 7px 15px; border-radius: 999px;
+        background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); color: #dce8f8; }
+      .hero h1 { color: #fff; font-size: 47px; letter-spacing: -1px; margin: 18px 0 14px; }
+      .hero h1 .hl { color: var(--accent2); }
+      .hero p { font-size: 17.5px; color: #c9d8ea; max-width: 640px; margin-bottom: 0; }
+      .hero-cta { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 30px; }
+      .hero-note { margin-top: 18px; font-size: 13.5px; color: #9db3cc; }
+
+      .topbar { background: #fff; border-bottom: 1px solid var(--line); }
+      .topbar-inner { display: flex; flex-wrap: wrap; gap: 8px 26px; align-items: center;
+        justify-content: space-between; padding: 13px 0; font-size: 14px; color: var(--muted); }
+      .topbar a { color: var(--navy); font-weight: 700; text-decoration: none; }
+      .topbar a:hover { color: var(--accent); }
+
+      /* sections */
+      .section { padding: 58px 0; }
+      .section.tight { padding: 40px 0; }
+      .section-head { max-width: 720px; margin-bottom: 30px; }
+      .kicker { display: inline-block; font-size: 11.5px; font-weight: 800; letter-spacing: 1.7px;
+        text-transform: uppercase; color: var(--accent); background: #fff2e8;
+        border: 1px solid #ffddc4; padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
+      .section h2 { font-size: 32px; margin-bottom: 8px; }
+      .lead { color: var(--muted); font-size: 16px; margin: 0; }
+
+      .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+      .grid-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+      .card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px;
+        height: 100%; transition: transform .22s, box-shadow .22s, border-color .22s;
+        display: flex; flex-direction: column; }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -32px rgba(12,27,42,.55); border-color: #cbd9ec; }
+      .card-icon { width: 50px; height: 50px; border-radius: 14px; display: grid; place-items: center;
+        font-size: 23px; margin-bottom: 16px; background: linear-gradient(135deg, #fff3e8, #ffe3cc); }
+      .card h3 { font-size: 18.5px; margin-bottom: 8px; }
+      .card p { color: var(--muted); font-size: 14.8px; margin: 0; }
+      .card ul { margin-top: 14px; }
+      .card ul li { font-size: 14.2px; padding: 6px 0; border-top: 1px dashed #eef2f8; }
+      .card ul li::before { content: '✓'; color: var(--accent); font-weight: 800; margin-right: 8px; }
+
+      .stats { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+      .stat { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px 14px; text-align: center; }
+      .stat b { display: block; font-family: 'Archivo', sans-serif; font-size: 31px; color: var(--navy); line-height: 1.15; }
+      .stat span { font-size: 13px; color: var(--muted); }
+
+      .clients { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+      .client { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 26px; text-align: center; }
+      .client b { display: block; font-family: 'Archivo', sans-serif; font-size: 22px; letter-spacing: 1.6px; color: var(--navy); margin-bottom: 4px; }
+      .client span { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+      .steps { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+      .step { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; }
+      .step-n { font-family: 'Archivo', sans-serif; font-size: 12.5px; font-weight: 800; color: var(--accent);
+        background: #fff2e8; border-radius: 8px; padding: 3px 9px; display: inline-block; }
+      .step h4 { font-size: 16.5px; margin: 12px 0 6px; }
+      .step p { margin: 0; font-size: 14.2px; color: var(--muted); }
+
+      .cta-band { margin: 20px 0 10px; padding: 40px; border-radius: 24px; color: #fff;
+        background: linear-gradient(135deg, #0a1826, #153e68 70%, #0d2a4a);
+        border: 1px solid rgba(255,255,255,.08); display: flex; flex-wrap: wrap;
+        align-items: center; justify-content: space-between; gap: 20px; }
+      .cta-band h2 { color: #fff; font-size: 25px; margin-bottom: 6px; }
+      .cta-band p { color: #c3d3e8; margin: 0; font-size: 15px; max-width: 560px; }
+      .cta-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+      /* faq */
+      .faq details { background: #fff; border: 1px solid var(--line); border-radius: 14px;
+        padding: 4px 20px; margin-bottom: 10px; }
+      .faq summary { cursor: pointer; font-weight: 700; font-size: 15.5px; color: var(--navy);
+        padding: 15px 0; list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+      .faq summary::-webkit-details-marker { display: none; }
+      .faq summary::after { content: '+'; color: var(--accent); font-size: 20px; line-height: 1; }
+      .faq details[open] summary::after { content: '−'; }
+      .faq details p { margin: 0 0 16px; color: var(--muted); font-size: 14.8px; }
+
+      /* forms */
+      .form-card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 28px;
+        box-shadow: 0 22px 50px -38px rgba(12,27,42,.5); }
+      .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+      .field { display: flex; flex-direction: column; gap: 6px; }
+      .field.full { grid-column: 1 / -1; }
+      .field label { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+      .req { color: var(--accent); }
+      .field input, .field select, .field textarea {
+        font: inherit; font-size: 15px; color: var(--text); background: #fbfcfe;
+        border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; width: 100%;
+        transition: border-color .15s, box-shadow .15s; }
+      .field textarea { resize: vertical; min-height: 96px; }
+      .field input:focus, .field select:focus, .field textarea:focus {
+        outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(249,115,22,.14); background: #fff; }
+      .hint { font-size: 12.5px; color: var(--muted); }
+      .form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px; }
+      .estimate { grid-column: 1 / -1; background: linear-gradient(135deg, #fff8f1, #fff3e8);
+        border: 1px solid #ffddc4; border-radius: 14px; padding: 18px 20px; }
+      .estimate small { display: block; color: var(--muted); font-size: 12.5px; }
+      .estimate b { display: block; font-family: 'Archivo', sans-serif; font-size: 24px; color: var(--navy); margin: 4px 0 2px; }
+
+      /* suivi */
+      .track-form { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+      .track-form input { flex: 1 1 240px; font: inherit; font-size: 15px; padding: 12px 14px;
+        border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+      .chip { display: inline-block; padding: 5px 11px; border-radius: 999px; font-size: 12.5px;
+        font-weight: 700; background: #fff2e8; color: #b45309; }
+      .track-head { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px;
+        display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; margin-top: 18px; }
+      .track-head .num { font-family: 'Archivo', sans-serif; font-size: 19px; font-weight: 800; color: var(--navy); }
+      .track-head .route { color: var(--muted); font-size: 14.5px; }
+      .bar { height: 9px; border-radius: 999px; background: #eaf0f8; overflow: hidden; margin: 14px 0 4px; }
+      .bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .5s; }
+      .timeline { margin-top: 18px; }
+      .t-item { display: flex; gap: 14px; padding-bottom: 20px; position: relative; }
+      .t-item:last-child { padding-bottom: 0; }
+      .t-item::before { content: ''; position: absolute; left: 15px; top: 34px; bottom: 0; width: 2px; background: #e6edf7; }
+      .t-item:last-child::before { display: none; }
+      .t-dot { width: 32px; height: 32px; flex: 0 0 32px; border-radius: 50%; display: grid; place-items: center;
+        font-size: 13px; font-weight: 800; background: #eef3fa; color: #94a3b8; border: 2px solid #e6edf7; z-index: 1; }
+      .t-item.done .t-dot { background: var(--ok); border-color: var(--ok); color: #fff; }
+      .t-item.current .t-dot { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 0 0 5px #ffede0; }
+      .t-body b { display: block; color: var(--navy); font-size: 15px; margin-top: 6px; }
+      .t-body span { color: var(--muted); font-size: 13px; }
+
+      .contact-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+      .contact-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+      .contact-card h3 { font-size: 17px; margin: 14px 0 8px; }
+      .contact-card p { margin: 0; font-size: 14.5px; color: var(--muted); }
+      .contact-card a { color: var(--navy); text-decoration: none; font-weight: 600; }
+      .contact-card a:hover { color: var(--accent); }
+
+      .legal { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 8px 22px; }
+      .legal table { width: 100%; border-collapse: collapse; font-size: 14.2px; }
+      .legal td { padding: 12px 0; border-bottom: 1px dashed #eef2f8; }
+      .legal tr:last-child td { border-bottom: none; }
+      .legal td:first-child { color: var(--muted); width: 46%; }
+      .map-frame { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; line-height: 0; }
+      .map-frame iframe { border: 0; width: 100%; height: 340px; }
+
+      .site-footer { margin-top: 50px; padding: 48px 0 24px; color: #c6d5e8;
+        background: linear-gradient(160deg, #0a1826, #0f2a4a); }
+      .foot-grid { display: grid; gap: 28px; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; padding-bottom: 30px; }
+      .foot-logo { font-family: 'Archivo', sans-serif; font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+      .foot-grid h4 { color: #fff; font-size: 13px; letter-spacing: .8px; text-transform: uppercase; margin-bottom: 14px; }
+      .foot-grid p { font-size: 14px; line-height: 1.8; color: #afc2da; margin: 0 0 14px; }
+      .foot-grid a { display: block; color: #b9cae0; text-decoration: none; font-size: 14px; padding: 4px 0; }
+      .foot-grid a:hover { color: var(--accent2); }
+      .socials { display: flex; gap: 9px; }
+      .socials a { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+        background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); font-size: 14px; padding: 0; }
+      .foot-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 18px; font-size: 12.5px;
+        color: #8fa6c2; display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; }
+
+      .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 56px; height: 56px;
+        border-radius: 50%; display: grid; place-items: center; background: #25d366; color: #fff;
+        font-size: 24px; text-decoration: none; box-shadow: 0 16px 30px -10px rgba(37,211,102,.75); }
+      .wa-float:hover { transform: scale(1.08); }
+      .notice { background: #fff8f1; border: 1px solid #ffddc4; color: #8a4b12;
+        border-radius: 12px; padding: 12px 16px; font-size: 14px; margin-top: 16px; }
+
+      @media (max-width: 980px) {
+        .header-cta { display: none; }
+        .burger { display: block; }
+        .nav { display: none; position: absolute; top: 74px; left: 0; right: 0; background: #fff;
+          border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch;
+          padding: 12px 22px 18px; gap: 2px; box-shadow: 0 20px 30px -24px rgba(12,27,42,.5); }
+        .nav.open { display: flex; }
+        .nav a { padding: 12px 6px; }
+        .hero { padding: 62px 0 56px; }
+        .hero h1 { font-size: 34px; }
+        .section h2 { font-size: 26px; }
+        .foot-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 620px) {
+        .hero h1 { font-size: 28px; }
+        .hero p { font-size: 15.5px; }
+        .form-grid { grid-template-columns: 1fr; }
+        .form-card { padding: 22px 18px; }
+        .cta-band { padding: 28px 22px; }
+        .foot-grid { grid-template-columns: 1fr; }
+        .section { padding: 42px 0; }
+        .track-form .btn { width: 100%; }
+      }
     </style>
-</head>
-<body class="bg-slate-50 font-sans flex h-screen overflow-hidden text-slate-800">
-    <aside class="w-64 bg-slate-900 text-white flex flex-col no-print transition-all duration-300">
-        <div class="p-6 border-b border-slate-700">
-            <h1 class="text-xl font-black tracking-wider text-blue-400">TRANSSTAR<br><span class="text-white">LAIOURATE</span></h1>
-            <p class="text-xs text-slate-400 mt-2">Système de Gestion Avancé</p>
-        </div>
-        <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
-            <a href="#" class="flex items-center space-x-3 bg-blue-600 text-white p-3 rounded-lg shadow-md">
-                <i class="fas fa-file-invoice"></i> <span>Éditeur de Factures</span>
-            </a>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#accueil" aria-label="TRANSSTAR LAIOURATE — accueil">
+          <span class="brand-logo" aria-hidden="true">🚛</span>
+          <span class="brand-text"><b>TRANS★STAR</b><small>LAIOURATE</small></span>
+        </a>
+
+        <nav class="nav" id="main-nav">
+          <a href="#services">Services</a>
+          <a href="#pourquoi">Pourquoi nous</a>
+          <a href="#devis">Devis</a>
+          <a href="#suivi">Suivi</a>
+          <a href="#contact">Contact</a>
         </nav>
-    </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <header class="bg-white shadow-sm border-b border-slate-200 p-4 flex justify-between items-center no-print">
-            <h2 class="text-2xl font-bold text-slate-800">Création de Document</h2>
-            <div class="flex space-x-4 items-center">
-                <span class="text-sm font-medium text-slate-500">Date: <span id="current-date"></span></span>
+        <a class="btn btn-primary header-cta" href="tel:+213697056401">📞 Appeler</a>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="accueil">
+        <div class="container">
+          <div class="hero-inner">
+            <span class="hero-badge">Depuis 2012 · Ghardaïa, Algérie</span>
+            <h1>Le transport lourd, <span class="hl">mené avec précision</span>.</h1>
+            <p>
+              Nous transportons matériel industriel, convois exceptionnels et marchandises en vrac
+              partout en Algérie — pour les grands comptes industriels et pétroliers.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#devis">Demander un devis</a>
+              <a class="btn btn-ghost" href="#suivi">Suivre un convoi</a>
             </div>
-        </header>
-
-        <div class="flex-1 overflow-auto p-6 flex flex-col lg:flex-row gap-6">
-            <section class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 lg:w-1/3 no-print h-fit">
-                <h3 class="text-lg font-bold mb-4 text-blue-900 border-b pb-2"><i class="fas fa-pen mr-2"></i>Détails de la Facture</h3>
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1">Nom du Client</label>
-                        <input type="text" id="input-client" class="w-full border border-slate-300 rounded-lg p-2" value="Sarl Alpha Transport">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-slate-600 mb-1">Description</label>
-                        <input type="text" id="input-desc" class="w-full border border-slate-300 rounded-lg p-2" value="Transport de marchandises">
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="w-1/2">
-                            <label class="block text-sm font-semibold text-slate-600 mb-1">Quantité</label>
-                            <input type="number" id="input-qty" class="w-full border border-slate-300 rounded-lg p-2" value="1">
-                        </div>
-                        <div class="w-1/2">
-                            <label class="block text-sm font-semibold text-slate-600 mb-1">Prix Unitaire</label>
-                            <input type="number" id="input-price" class="w-full border border-slate-300 rounded-lg p-2" value="45000">
-                        </div>
-                    </div>
-                    <button id="update-btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg mt-4 shadow-md">Mettre à jour l'aperçu</button>
-                    <button id="print-btn" class="w-full bg-slate-800 text-white font-bold py-3 rounded-lg mt-2 shadow-md">Enregistrer en PDF</button>
-                </div>
-            </section>
-[24/10/2026 01:45] Sidali La: <section class="bg-slate-200 p-6 rounded-xl border border-slate-300 lg:w-2/3 flex justify-center overflow-auto no-print">
-                <div id="printable-invoice" class="bg-white w-full max-w-3xl p-10 shadow-2xl rounded-sm">
-                    <div class="flex justify-between items-start border-b-2 border-blue-900 pb-6 mb-6">
-                        <div>
-                            <h1 class="text-3xl font-black text-blue-900">TRANSSTAR LAIOURATE</h1>
-                            <p class="text-sm text-slate-500">NIF: "0000123456789" | RC: 12/3456</p>
-                        </div>
-                        <div class="text-right">
-                            <h2 class="text-4xl font-bold text-slate-200 uppercase tracking-widest">Facture</h2>
-                            <p class="text-sm text-slate-500">Date: <span id="invoice-date"></span></p>
-                        </div>
-                    </div>
-                    <div class="mb-8">
-                        <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">Facturé à :</h3>
-                        <p id="display-client" class="text-xl font-bold text-slate-800">Sarl Alpha Transport</p>
-                    </div>
-                    <table class="w-full mb-8 text-left border-collapse">
-                        <thead>
-                            <tr class="bg-blue-900 text-white">
-                                <th class="p-3 text-sm font-semibold">Description</th>
-                                <th class="p-3 text-sm font-semibold">Qté</th>
-                                <th class="p-3 text-sm font-semibold">Prix</th>
-                                <th class="p-3 text-sm font-semibold text-right">Total HT</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-slate-200">
-                                <td id="display-desc" class="p-3">Transport de marchandises</td>
-                                <td id="display-qty" class="p-3">1</td>
-                                <td id="display-price" class="p-3">45 000,00 DZD</td>
-                                <td id="display-total" class="p-3 font-bold text-right">45 000,00 DZD</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="flex justify-end mb-12">
-                        <div class="w-1/2">
-                            <div class="flex justify-between p-2 border-b"><span class="font-bold">Total HT:</span><span id="summary-ht" class="font-bold">45 000,00 DZD</span></div>
-                            <div class="flex justify-between p-2 border-b"><span class="font-bold">TVA (19%):</span><span id="summary-tva" class="font-bold">8 550,00 DZD</span></div>
-                            <div class="flex justify-between p-3 bg-blue-50 mt-2 rounded border border-blue-200">
-                                <span class="font-black text-blue-900 text-lg">Net à Payer:</span><span id="summary-ttc" class="font-black text-blue-900 text-lg">53 550,00 DZD</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <p class="hero-note">Références : SONATRACH · ALFAPIPE — plus de 13 ans d’expérience</p>
+          </div>
         </div>
+      </section>
+
+      <div class="topbar">
+        <div class="container topbar-inner">
+          <span>📞 <a href="tel:+213697056401">+213 697 05 64 01</a></span>
+          <span>✉️ <a href="mailto:tronsstar91@gmail.com">tronsstar91@gmail.com</a></span>
+          <span>🕐 Samedi – Jeudi : 08:00 – 18:00</span>
+          <a class="btn btn-wa" style="padding:9px 16px;font-size:13.5px"
+             href="https://wa.me/213697056401?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20transport"
+             target="_blank" rel="noopener">Devis par WhatsApp</a>
+        </div>
+      </div>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="stats">
+            <div class="stat"><b>+13</b><span>années d’expérience</span></div>
+            <div class="stat"><b>2012</b><span>création de l’entreprise</span></div>
+            <div class="stat"><b>2</b><span>grands comptes industriels</span></div>
+            <div class="stat"><b>100%</b><span>convois suivis</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Services</span>
+            <h2>Nos prestations</h2>
+            <p class="lead">Des solutions adaptées aux charges lourdes, aux sites isolés et aux délais industriels.</p>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">🚛</div>
+              <h3>Convois exceptionnels</h3>
+              <p>Transport de charges indivisibles et de matériel hors gabarit, avec étude d’itinéraire.</p>
+              <ul><li>Étude d’itinéraire</li><li>Autorisations &amp; escortes</li><li>Plateaux surbaissés</li></ul>
+            </div>
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">🏗️</div>
+              <h3>Matériel industriel</h3>
+              <p>Structures métalliques, équipements de chantier, groupes électrogènes et pièces lourdes.</p>
+              <ul><li>Chargement &amp; arrimage</li><li>Manutention sur site</li><li>Livraison chantier</li></ul>
+            </div>
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">⛏️</div>
+              <h3>Vrac &amp; matériaux</h3>
+              <p>Agrégats, sable, gravier et matériaux de construction en bennes de forte capacité.</p>
+              <ul><li>Bennes forte capacité</li><li>Chargement rapide</li><li>Rotations régulières</li></ul>
+            </div>
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">🛢️</div>
+              <h3>Sites industriels &amp; pétroliers</h3>
+              <p>Missions vers les sites industriels et pétroliers, y compris dans le Sud algérien.</p>
+              <ul><li>Missions Sud</li><li>Consignes HSE</li><li>Convois accompagnés</li></ul>
+            </div>
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">🇩🇿</div>
+              <h3>Transport national</h3>
+              <p>Transport de marchandises sur l’ensemble du territoire, du chargement à la livraison.</p>
+              <ul><li>Couverture nationale</li><li>Départs réguliers</li><li>Suivi téléphonique</li></ul>
+            </div>
+            <div class="card">
+              <div class="card-icon" aria-hidden="true">📋</div>
+              <h3>Études &amp; logistique</h3>
+              <p>Étude de faisabilité, autorisations, arrimage et coordination des opérations.</p>
+              <ul><li>Étude d’itinéraire</li><li>Documents de transport</li><li>Coordination</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Références</span>
+            <h2>Ils nous font confiance</h2>
+            <p class="lead">Des références industrielles exigeantes, sur des missions techniques et sensibles.</p>
+          </div>
+          <div class="clients">
+            <div class="client"><b>SONATRACH</b><span>Groupe pétrolier national</span></div>
+            <div class="client"><b>ALFAPIPE</b><span>Tuyauterie &amp; structures industrielles</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pourquoi">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Pourquoi nous</span>
+            <h2>Pourquoi TRANSSTAR</h2>
+            <p class="lead">Parce qu’un convoi lourd ne s’improvise pas.</p>
+          </div>
+          <div class="grid">
+            <div class="card"><div class="card-icon" aria-hidden="true">🛡️</div><h3>Sécurité du convoi</h3>
+              <p>Chaque chargement est étudié, arrimé et contrôlé avant le départ.</p></div>
+            <div class="card"><div class="card-icon" aria-hidden="true">⏱️</div><h3>Délais tenus</h3>
+              <p>Un délai annoncé est un engagement, pas une estimation.</p></div>
+            <div class="card"><div class="card-icon" aria-hidden="true">🏭</div><h3>Références solides</h3>
+              <p>La confiance de grands comptes industriels algériens depuis des années.</p></div>
+            <div class="card"><div class="card-icon" aria-hidden="true">🧭</div><h3>Connaissance du terrain</h3>
+              <p>Ghardaïa, le Sud et les itinéraires industriels : nous les pratiquons.</p></div>
+            <div class="card"><div class="card-icon" aria-hidden="true">📄</div><h3>Devis transparent</h3>
+              <p>Prix détaillé et tenu, sans supplément à la livraison.</p></div>
+            <div class="card"><div class="card-icon" aria-hidden="true">📞</div><h3>Interlocuteur unique</h3>
+              <p>Une seule personne suit votre dossier, du devis à la livraison.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Processus</span>
+            <h2>Notre méthode</h2>
+            <p class="lead">Quatre étapes, du premier appel à la livraison sur site.</p>
+          </div>
+          <div class="steps">
+            <div class="step"><span class="step-n">01</span><h4>Votre demande</h4>
+              <p>Décrivez la marchandise, le tonnage et les points de départ et d’arrivée.</p></div>
+            <div class="step"><span class="step-n">02</span><h4>Étude &amp; devis</h4>
+              <p>Nous étudions l’itinéraire et les autorisations, puis transmettons un devis clair.</p></div>
+            <div class="step"><span class="step-n">03</span><h4>Chargement &amp; convoi</h4>
+              <p>Arrimage, contrôle, départ et suivi du convoi jusqu’à destination.</p></div>
+            <div class="step"><span class="step-n">04</span><h4>Livraison &amp; PV</h4>
+              <p>Livraison sur site et procès-verbal de réception signé.</p></div>
+          </div>
+        </div>
+      </section>
+      <section class="section" id="devis">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Devis</span>
+            <h2>Demander un devis</h2>
+            <p class="lead">Quelques informations suffisent. Réponse sous 24 heures ouvrées, sans engagement.</p>
+          </div>
+
+          <div class="grid grid-2">
+            <div class="form-card">
+              <form name="devis" method="POST" action="/merci.html" data-netlify="true" netlify-honeypot="bot-field" id="devis-form">
+                <input type="hidden" name="form-name" value="devis" />
+                <p hidden><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="name">Nom et prénom <span class="req">*</span></label>
+                    <input id="name" name="name" type="text" required placeholder="Ex. Karim Benali" />
+                  </div>
+                  <div class="field">
+                    <label for="societe">Société</label>
+                    <input id="societe" name="societe" type="text" placeholder="Nom de votre société" />
+                  </div>
+                  <div class="field">
+                    <label for="phone">Téléphone <span class="req">*</span></label>
+                    <input id="phone" name="phone" type="tel" required placeholder="06 00 00 00 00" />
+                  </div>
+                  <div class="field">
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email" placeholder="contact@societe.dz" />
+                  </div>
+                  <div class="field full">
+                    <label for="service">Type de prestation</label>
+                    <select id="service" name="service">
+                      <option>Convoi exceptionnel</option>
+                      <option>Matériel industriel</option>
+                      <option>Vrac &amp; matériaux</option>
+                      <option>Site industriel / pétrolier</option>
+                      <option>Transport national</option>
+                      <option>Études &amp; logistique</option>
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label for="marchandise">Nature de la marchandise</label>
+                    <input id="marchandise" name="marchandise" type="text"
+                           placeholder="Ex. structures métalliques, agrégats, engins…" />
+                  </div>
+                  <div class="field">
+                    <label for="depart">Départ <span class="req">*</span></label>
+                    <input id="depart" name="depart" type="text" required placeholder="Ghardaïa" />
+                  </div>
+                  <div class="field">
+                    <label for="destination">Destination <span class="req">*</span></label>
+                    <input id="destination" name="destination" type="text" required placeholder="Hassi Messaoud" />
+                  </div>
+                  <div class="field">
+                    <label for="distance">Distance estimée (km)</label>
+                    <input id="distance" name="distance" type="number" min="0" step="10" value="400" />
+                  </div>
+                  <div class="field">
+                    <label for="tonnes">Poids (tonnes)</label>
+                    <input id="tonnes" name="tonnes" type="number" min="0" step="1" value="10" />
+                  </div>
+                  <div class="field">
+                    <label for="unites">Nombre d’unités</label>
+                    <input id="unites" name="unites" type="number" min="1" step="1" value="1" />
+                  </div>
+                  <div class="field">
+                    <label for="date">Date de chargement souhaitée</label>
+                    <input id="date" name="date" type="date" />
+                  </div>
+                  <div class="field full">
+                    <label for="precisions">Dimensions / précisions</label>
+                    <textarea id="precisions" name="precisions"
+                      placeholder="Longueur × largeur × hauteur, contraintes d’accès, horaires, autorisations…"></textarea>
+                  </div>
+
+                  <div class="estimate" aria-live="polite">
+                    <small>Estimation indicative — non contractuelle</small>
+                    <b id="estimate-value">—</b>
+                    <small>Ajustez la distance, le poids et le type de prestation.</small>
+                  </div>
+
+                  <div class="form-actions">
+                    <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+                    <a class="btn btn-wa" id="wa-send"
+                       href="https://wa.me/213697056401" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>
+                  </div>
+                  <p class="hint" style="grid-column:1/-1">
+                    Vos informations servent uniquement à traiter votre demande. Aucun engagement.
+                  </p>
+                </div>
+              </form>
+            </div>
+
+            <aside>
+              <div class="card">
+                <h3>Bon à savoir</h3>
+                <p>Pour un devis précis, indiquez le poids réel, les dimensions et les contraintes d’accès du site.</p>
+                <ul>
+                  <li>Tonnage et gabarit déterminent le matériel nécessaire</li>
+                  <li>Les convois exceptionnels demandent une étude d’itinéraire</li>
+                  <li>Un délai réaliste permet de réserver le convoi adapté</li>
+                </ul>
+              </div>
+              <div class="card" style="margin-top:18px">
+                <h3>Vous préférez appeler ?</h3>
+                <p style="margin-bottom:14px">Notre équipe est joignable aux heures d’ouverture.</p>
+                <div class="cta-actions">
+                  <a class="btn btn-line" href="tel:+213697056401">📞 +213 697 05 64 01</a>
+                  <a class="btn btn-line" href="tel:+213553786491">☎️ +213 553 78 64 91</a>
+                </div>
+                <p class="hint" style="margin-top:12px">🕐 Samedi – Jeudi : 08:00 – 18:00</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight" id="suivi">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Suivi</span>
+            <h2>Suivre un convoi</h2>
+            <p class="lead">Indiquez votre numéro de suivi pour connaître l’état de votre transport.</p>
+          </div>
+
+          <div class="form-card">
+            <form class="track-form" id="track-form" autocomplete="off">
+              <input id="track-input" type="text" placeholder="Ex. TS-1042" aria-label="Numéro de suivi" />
+              <button class="btn btn-primary" type="submit">Rechercher</button>
+            </form>
+            <p class="hint">
+              Numéros de démonstration : <span class="chip">TS-1042</span>
+              <span class="chip">TS-2150</span> <span class="chip">TS-3300</span>
+            </p>
+            <div id="track-result" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">FAQ</span>
+            <h2>Questions fréquentes</h2>
+            <p class="lead">Une question précise ? Écrivez-nous sur WhatsApp.</p>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>Quels types de marchandises transportez-vous ?</summary>
+              <p>Matériel industriel, structures métalliques, engins, vrac et matériaux de construction,
+                 ainsi que des convois exceptionnels hors gabarit.</p>
+            </details>
+            <details>
+              <summary>Intervenez-vous en dehors de Ghardaïa ?</summary>
+              <p>Oui. Nous réalisons des transports sur l’ensemble du territoire national, y compris vers
+                 les sites industriels et pétroliers du Sud.</p>
+            </details>
+            <details>
+              <summary>Gérez-vous les autorisations pour les convois exceptionnels ?</summary>
+              <p>Oui : étude d’itinéraire, démarches d’autorisation de circulation et, si nécessaire, escortes.</p>
+            </details>
+            <details>
+              <summary>Comment obtenir un devis ?</summary>
+              <p>Via le formulaire de devis, par téléphone ou sur WhatsApp. Nous répondons généralement
+                 sous 24 heures ouvrées.</p>
+            </details>
+            <details>
+              <summary>La marchandise est-elle assurée ?</summary>
+              <p>Une couverture est établie selon la nature et la valeur de la marchandise ; elle est
+                 précisée dans le devis.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight" id="contact">
+        <div class="container">
+          <div class="section-head">
+            <span class="kicker">Contact</span>
+            <h2>Nous contacter</h2>
+            <p class="lead">Un interlocuteur, pas un standard.</p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="card-icon" aria-hidden="true">📞</div>
+              <h3>Téléphone</h3>
+              <p><a href="tel:+213697056401">+213 697 05 64 01</a><br />
+                 <a href="tel:+213553786491" style="color:var(--muted)">+213 553 78 64 91</a></p>
+            </div>
+            <div class="contact-card">
+              <div class="card-icon" aria-hidden="true">✆</div>
+              <h3>WhatsApp</h3>
+              <p style="margin-bottom:14px">Le plus rapide : envoyez les détails du convoi.</p>
+              <a class="btn btn-wa"
+                 href="https://wa.me/213697056401?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20transport"
+                 target="_blank" rel="noopener">Écrire sur WhatsApp</a>
+            </div>
+            <div class="contact-card">
+              <div class="card-icon" aria-hidden="true">✉️</div>
+              <h3>E-mail</h3>
+              <p><a href="mailto:tronsstar91@gmail.com">tronsstar91@gmail.com</a></p>
+            </div>
+            <div class="contact-card">
+              <div class="card-icon" aria-hidden="true">📍</div>
+              <h3>Adresse</h3>
+              <p>Ghardaïa, Algérie<br /><span style="color:var(--muted)">🕐 Samedi – Jeudi : 08:00 – 18:00</span></p>
+            </div>
+          </div>
+
+          <div style="margin-top:22px" class="map-frame">
+            <iframe
+              src="https://maps.google.com/maps?q=Gharda%C3%AFa%2C%20Alg%C3%A9rie&z=12&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Carte Google Maps — TRANSSTAR LAIOURATE, Ghardaïa"></iframe>
+          </div>
+
+          <div style="margin-top:34px">
+            <h2 style="font-size:24px">Informations administratives</h2>
+            <div class="legal">
+              <table>
+                <tr><td>Raison sociale</td><td><strong>TRANSSTAR LAIOURATE</strong></td></tr>
+                <tr><td>Registre de commerce (RC)</td><td><strong>09/A/4315914-47-01</strong></td></tr>
+                <tr><td>Identifiant fiscal (MF)</td><td><strong>197247010082234</strong></td></tr>
+                <tr><td>Article d’imposition (AI)</td><td><strong>46030401065</strong></td></tr>
+                <tr><td>Compte bancaire</td><td><strong>BEA — 00200028028220034776</strong></td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section tight">
+        <div class="container">
+          <div class="cta-band">
+            <div>
+              <h2>Un convoi à organiser ?</h2>
+              <p>Décrivez votre marchandise : nous vous répondons sous 24 heures ouvrées avec un devis clair.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="#devis">Demander un devis</a>
+              <a class="btn btn-wa"
+                 href="https://wa.me/213697056401?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20transport"
+                 target="_blank" rel="noopener">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
+    <footer class="site-footer">
+      <div class="container">
+        <div class="foot-grid">
+          <div>
+            <div class="foot-logo">TRANS★STAR LAIOURATE</div>
+            <p>Transport de marchandises et convois lourds depuis 2012. Basés à Ghardaïa,
+               nous intervenons partout en Algérie.</p>
+            <div class="socials">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="Instagram">◎</a>
+              <a href="#" title="LinkedIn">in</a>
+              <a href="https://wa.me/213697056401" target="_blank" rel="noopener" title="WhatsApp">✆</a>
+            </div>
+          </div>
+          <div>
+            <h4>Navigation</h4>
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#devis">Demander un devis</a>
+            <a href="#suivi">Suivi de convoi</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <div>
+            <h4>Prestations</h4>
+            <a href="#services">Convois exceptionnels</a>
+            <a href="#services">Matériel industriel</a>
+            <a href="#services">Vrac &amp; matériaux</a>
+            <a href="#services">Sites pétroliers</a>
+            <a href="#services">Transport national</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="tel:+213697056401">📞 +213 697 05 64 01</a>
+            <a href="tel:+213553786491">☎️ +213 553 78 64 91</a>
+            <a href="mailto:tronsstar91@gmail.com">✉️ tronsstar91@gmail.com</a>
+            <a href="#contact">📍 Ghardaïa, Algérie</a>
+            <p style="margin-top:10px">🕐 Samedi – Jeudi : 08:00 – 18:00</p>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 TRANSSTAR LAIOURATE — Tous droits réservés.</span>
+          <span>RC 09/A/4315914-47-01 · MF 197247010082234 · AI 46030401065</span>
+        </div>
+      </div>
+    </footer>
+
+    <a class="wa-float"
+       href="https://wa.me/213697056401?text=Bonjour%2C%20je%20souhaite%20un%20devis%20pour%20un%20transport"
+       target="_blank" rel="noopener" title="Nous écrire sur WhatsApp">✆</a>
+
     <script>
-        const today = new Date().toLocaleDateString('fr-FR');
-        document.getElementById('current-date').innerText = today;
-        document.getElementById('invoice-date').innerText = today;
+      /* menu mobile */
+      const burger = document.getElementById('burger');
+      const nav = document.getElementById('main-nav');
+      burger?.addEventListener('click', () => {
+        const open = nav?.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      nav?.querySelectorAll('a').forEach((link) =>
+        link.addEventListener('click', () => nav.classList.remove('open'))
+      );
 
-        function updateInvoice() {
-            const client = document.getElementById('input-client').value;
-            const desc = document.getElementById('input-desc').value;
-            const qty = parseFloat(document.getElementById('input-qty').value) || 0;
-            const price = parseFloat(document.getElementById('input-price').value) || 0;
+      /* estimation + WhatsApp */
+      const factors = {
+        'Convoi exceptionnel': 1.9,
+        'Matériel industriel': 1.35,
+        'Vrac & matériaux': 1.0,
+        'Site industriel / pétrolier': 1.55,
+        'Transport national': 1.0,
+        'Études & logistique': 0.5,
+      };
+      const el = (id) => document.getElementById(id);
+      const form = el('devis-form');
+      const fmt = (n) => new Intl.NumberFormat('fr-FR').format(Math.round(n)) + ' DA';
 
-            const totalHT = qty * price;
-            const tva = totalHT * 0.19;
-            const totalTTC = totalHT + tva;
-[24/10/2026 01:45] Sidali La: const formatMoney = (amount) => new Intl.NumberFormat('fr-DZ', { minimumFractionDigits: 2 }).format(amount) + ' DZD';
+      function recalc() {
+        const service = el('service')?.value || 'Transport national';
+        const km = Number(el('distance')?.value || 0);
+        const tons = Number(el('tonnes')?.value || 0);
+        const factor = factors[service] ?? 1;
+        const base = (15000 + km * 180 + tons * 1800) * factor;
+        const low = base * 0.92;
+        const high = base * 1.12;
 
-            document.getElementById('display-client').innerText = client;
-            document.getElementById('display-desc').innerText = desc;
-            document.getElementById('display-qty').innerText = qty;
-            document.getElementById('display-price').innerText = formatMoney(price);
-            document.getElementById('display-total').innerText = formatMoney(totalHT);
+        const out = el('estimate-value');
+        if (out) out.textContent = fmt(low) + ' — ' + fmt(high);
 
-            document.getElementById('summary-ht').innerText = formatMoney(totalHT);
-            document.getElementById('summary-tva').innerText = formatMoney(tva);
-            document.getElementById('summary-ttc').innerText = formatMoney(totalTTC);
+        const message = [
+          'Demande de devis — TRANSSTAR LAIOURATE',
+          'Nom : ' + (el('name')?.value?.trim() || '—'),
+          'Société : ' + (el('societe')?.value?.trim() || '—'),
+          'Téléphone : ' + (el('phone')?.value?.trim() || '—'),
+          'E-mail : ' + (el('email')?.value?.trim() || '—'),
+          'Prestation : ' + service,
+          'Marchandise : ' + (el('marchandise')?.value?.trim() || '—'),
+          'Trajet : ' + (el('depart')?.value?.trim() || '—') + ' → ' + (el('destination')?.value?.trim() || '—'),
+          'Distance : ' + km + ' km',
+          'Poids : ' + tons + ' t · Unités : ' + (el('unites')?.value || '1'),
+          'Chargement : ' + (el('date')?.value || '—'),
+          'Précisions : ' + (el('precisions')?.value?.trim() || '—'),
+          'Estimation : ' + fmt(low) + ' — ' + fmt(high),
+        ].join('\n');
+
+        const wa = el('wa-send');
+        if (wa) wa.href = 'https://wa.me/213697056401?text=' + encodeURIComponent(message);
+      }
+
+      form?.addEventListener('input', recalc);
+      form?.addEventListener('change', recalc);
+
+      const dateInput = el('date');
+      if (dateInput) {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        dateInput.value = tomorrow.toISOString().slice(0, 10);
+      }
+      recalc();
+
+      /* suivi de convoi */
+      const labels = ['Demande reçue', 'Chargement effectué', 'Convoi en route', 'Livraison effectuée'];
+      const shipments = {
+        'TS-1042': {
+          from: 'Ghardaïa', to: 'Hassi Messaoud', weight: '28 t', pieces: '1 convoi',
+          service: 'Convoi exceptionnel', status: 4, eta: 'livré le 21/10/2026',
+          events: [
+            ['Demande reçue', '18/10/2026 · 09:20'],
+            ['Chargement effectué', '18/10/2026 · 15:40'],
+            ['Convoi en route', '19/10/2026 · 06:00'],
+            ['Livraison effectuée', '21/10/2026 · 11:15'],
+          ],
+        },
+        'TS-2150': {
+          from: 'Ghardaïa', to: 'Alger', weight: '18 t', pieces: '4 colis',
+          service: 'Matériel industriel', status: 3, eta: '22/10/2026',
+          events: [
+            ['Demande reçue', '20/10/2026 · 10:10'],
+            ['Chargement effectué', '21/10/2026 · 08:30'],
+            ['Convoi en route', '21/10/2026 · 14:00'],
+            ['Livraison effectuée', 'prévue le 22/10/2026'],
+          ],
+        },
+        'TS-3300': {
+          from: 'Ouargla', to: 'Ghardaïa', weight: '32 t', pieces: '1 benne',
+          service: 'Vrac & matériaux', status: 2, eta: '23/10/2026',
+          events: [
+            ['Demande reçue', '21/10/2026 · 16:00'],
+            ['Chargement effectué', '22/10/2026 · 07:15'],
+            ['Convoi en route', 'prévu le 22/10/2026'],
+            ['Livraison effectuée', 'prévue le 23/10/2026'],
+          ],
+        },
+      };
+
+      const trackForm = document.getElementById('track-form');
+      const trackInput = document.getElementById('track-input');
+      const trackResult = document.getElementById('track-result');
+
+      const esc = (v) =>
+        String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+      function renderTrack(key) {
+        const s = shipments[key];
+        if (!s) {
+          trackResult.innerHTML =
+            '<div class="notice">Aucun convoi trouvé avec le numéro « ' + esc(key) + ' ». Vérifiez le numéro ou contactez-nous.</div>';
+          return;
         }
+        const progress = Math.min(100, Math.round((s.status / 4) * 100));
+        const state = s.status >= 4 ? 'Livré' : labels[s.status];
+        const events = s.events
+          .map((ev, i) => {
+            const cls = i < s.status ? 'done' : i === s.status ? 'current' : '';
+            const dot = i < s.status ? '✓' : String(i + 1);
+            return '<div class="t-item ' + cls + '"><div class="t-dot">' + dot + '</div>' +
+              '<div class="t-body"><b>' + esc(ev[0]) + '</b><span>' + esc(ev[1]) + '</span></div></div>';
+          })
+          .join('');
 
-        document.getElementById('update-btn').addEventListener('click', updateInvoice);
-        document.getElementById('print-btn').addEventListener('click', () => {
-            updateInvoice();
-            window.print();
-        });
+        trackResult.innerHTML =
+          '<div class="track-head"><div><div class="num">' + esc(key) + '</div>' +
+          '<div class="route">' + esc(s.from) + ' → ' + esc(s.to) + ' · ' + esc(s.service) + '</div></div>' +
+          '<div style="text-align:right"><span class="chip">' + esc(state) + '</span>' +
+          '<div class="route">Livraison : ' + esc(s.eta) + '</div></div></div>' +
+          '<div class="bar"><div class="bar-fill" style="width:' + progress + '%"></div></div>' +
+          '<div class="timeline">' + events + '</div>' +
+          '<div class="stats" style="margin-top:20px">' +
+          '<div class="stat"><b style="font-size:17px">' + esc(s.weight) + '</b><span>Poids</span></div>' +
+          '<div class="stat"><b style="font-size:17px">' + esc(s.pieces) + '</b><span>Unités</span></div>' +
+          '<div class="stat"><b style="font-size:17px">' + esc(s.service) + '</b><span>Prestation</span></div>' +
+          '</div>';
+      }
+
+      trackForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const key = (trackInput?.value || '').trim().toUpperCase();
+        if (key) renderTrack(key);
+      });
     </script>
-</body>
-</html>
-[24/10/2026 01:53] Sidali La: <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TRANS★STAR LAIOURATE | Transport de marchandises lourdes, Ghardaïa</title>
-<meta name="description" content="TRANS★STAR LAIOURATE, transport de marchandises lourdes en Algérie depuis Ghardaïa. Plus de 13 ans d’expérience, clients SONATRACH et ALFAPIPE.">
-<meta property="og:title" content="TRANS★STAR LAIOURATE | Transport de marchandises lourdes">
-<meta property="og:description" content="Plus de 13 ans d’expérience dans le transport lourd en Algérie.">
-<meta property="og:type" content="website">
-<meta name="theme-color" content="#1c1712">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%9B%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#1c1712; --ink2:#2a231b; --sable:#eadfc8; --sable2:#f6f0e2;
-  --ocre:#d49a2a; --terre:#9a4a24; --txt:#2b241b; --mut:#6d6253;
-  --head:'Barlow Condensed','Arial Narrow',Impact,sans-serif;
-  --body:'Barlow',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{font-family:var(--body);color:var(--txt);background:var(--sable2);line-height:1.6;font-size:17px}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--ocre);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-h1,h2,h3{font-family:var(--head);line-height:1.02;letter-spacing:.005em}
-
-/* Navigation */
-header{position:sticky;top:0;z-index:20;background:var(--ink);color:var(--sable)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-family:var(--head);font-weight:800;font-size:1.35rem;text-decoration:none;letter-spacing:.02em}
-.logo span{color:var(--ocre)}
-nav{display:flex;gap:22px;align-items:center}
-nav a{text-decoration:none;font-weight:500;font-size:.95rem}
-nav a:hover{color:var(--ocre)}
-.btn{display:inline-block;background:var(--ocre);color:var(--ink);font-weight:600;padding:13px 24px;border-radius:4px;text-decoration:none;border:0;cursor:pointer;font:600 1rem var(--body);transition:background .2s}
-.btn:hover{background:#e6ad3c}
-.btn.ghost{background:transparent;color:var(--sable);border:2px solid var(--sable)}
-.btn.ghost:hover{background:var(--sable);color:var(--ink)}
-nav .btn{padding:8px 16px;font-size:.9rem}
-
-/* Hero */
-.hero{background:var(--ink);color:var(--sable);padding:84px 0 0;position:relative;overflow:hidden}
-.hero h1{font-size:clamp(3rem,10vw,6.6rem);font-weight:800;max-width:11ch}
-.hero h1 em{font-style:normal;color:var(--ocre)}
-.hero p{max-width:50ch;margin:26px 0 34px;font-size:1.15rem;color:#d9ccb2}
-.cta{display:flex;gap:14px;flex-wrap:wrap}
-.road{margin-top:70px;height:46px;background:var(--ink2);position:relative;border-top:4px solid var(--ocre)}
-.road::after{content:"";position:absolute;left:0;right:0;top:50%;height:5px;margin-top:-2px;
-  background:repeating-linear-gradient(90deg,var(--sable) 0 56px,transparent 56px 112px);
-  background-size:112px 5px;animation:roll 3.2s linear infinite}
-@keyframes roll{to{background-position:-112px 0}}
-@media (prefers-reduced-motion:reduce){.road::after{animation:none}}
-
-/* Sections */
-section{padding:84px 0}
-h2{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:800;margin-bottom:14px}
-.lead{max-width:60ch;color:var(--mut);margin-bottom:44px}
-
-/* Chiffres */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));background:var(--sable);border-radius:6px}
-.stats div{padding:30px 26px;border-left:4px solid var(--ocre)}
-.stats strong{display:block;font:800 3.2rem/1 var(--head);color:var(--terre)}
-.stats span{color:var(--mut);font-size:.95rem}
-[24/10/2026 01:53] Sidali La: /* Services */
-#services{background:var(--sable2)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:2px solid var(--ink)}
-.svc{padding:30px 28px 34px 0;border-bottom:1px solid #cdbf9f}
-.svc h3{font-size:1.7rem;font-weight:700;margin-bottom:8px}
-.svc p{color:var(--mut)}
-
-/* Références */
-#refs{background:var(--ink);color:var(--sable)}
-#refs .lead{color:#c9bca2}
-.clients{display:flex;flex-wrap:wrap;gap:18px 56px;font:800 clamp(2.4rem,7vw,4.6rem)/1 var(--head);color:var(--ocre)}
-
-/* À propos */
-.about{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.about p+p{margin-top:16px}
-.legal{background:var(--sable);padding:26px;border-radius:6px;font-size:.92rem}
-.legal dt{font-weight:600;margin-top:10px}
-.legal dt:first-child{margin-top:0}
-.legal dd{color:var(--mut)}
-
-/* Contact */
-#contact{background:var(--sable)}
-.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
-.contact ul{list-style:none;margin-top:8px}
-.contact li{padding:14px 0;border-bottom:1px solid #c9bb99}
-.contact li b{display:block;font-size:.9rem;color:var(--mut);font-weight:500}
-.contact a{font-weight:600;font-size:1.1rem;text-decoration:none}
-.contact a:hover{color:var(--terre)}
-form{display:grid;gap:14px}
-label{font-weight:600;font-size:.95rem;display:grid;gap:6px}
-input,textarea{font:inherit;padding:12px 14px;border:2px solid #b9aa86;border-radius:4px;background:var(--sable2);color:var(--txt)}
-input:focus,textarea:focus{border-color:var(--terre);outline:0}
-textarea{min-height:130px;resize:vertical}
-.hp{position:absolute;left:-9999px}
-
-footer{background:var(--ink);color:#bfb298;padding:26px 0;font-size:.9rem}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-
-/* WhatsApp flottant */
-.wa{position:fixed;right:18px;bottom:18px;z-index:30;background:#25d366;color:#fff;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.3)}
-.wa svg{width:30px;height:30px;fill:#fff}
-
-@media(max-width:760px){
-  nav a:not(.btn){display:none}
-  .about,.contact{grid-template-columns:1fr;gap:34px}
-  section{padding:60px 0}
-  .hero{padding-top:56px}
-}
-</style>
-</head>
-<body>
-
-<header>
-  <div class="wrap nav">
-    <a class="logo" href="#top">TRANS<span>★</span>STAR LAIOURATE</a>
-    <nav aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#refs">Références</a>
-      <a href="#apropos">À propos</a>
-      <a class="btn" href="#contact">Demander un devis</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-  <div class="hero">
-    <div class="wrap">
-      <h1>Le poids lourd, <em>c’est notre métier.</em></h1>
-      <p>TRANS★STAR LAIOURATE transporte vos marchandises lourdes à travers l’Algérie, depuis Ghardaïa, avec plus de 13 ans d’expérience sur le terrain.</p>
-      <div class="cta">
-        <a class="btn" href="#contact">Demander un devis</a>
-        <a class="btn ghost" href="tel:+213697056401">Appeler 06 97 05 64 01</a>
-      </div>
-    </div>
-    <div class="road" aria-hidden="true"></div>
-  </div>
-
-  <section>
-    <div class="wrap">
-      <div class="stats">
-        <div><strong>13+</strong><span>années d’expérience documentée</span></div>
-        <div><strong>75</strong><span>camions dans la flotte</span></div>
-        <div><strong>2</strong><span>grands donneurs d’ordre : SONATRACH et ALFAPIPE</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="services">
-    <div class="wrap">
-      <h2>Nos services</h2>
-      <p class="lead">Un seul métier, exécuté avec rigueur : déplacer des charges lourdes, en toute sécurité et dans les délais convenus.</p>
-      <div class="grid">
-        <article class="svc"><h3>Transport de marchandises lourdes</h3><p>Matériel industriel, équipements et charges volumineuses acheminés par camions adaptés.</p></article>
-[24/10/2026 01:53] Sidali La: <article class="svc"><h3>Transport pour l’industrie</h3><p>Une organisation pensée pour les exigences des grands chantiers et des sociétés pétrolières et gazières.</p></article>
-        <article class="svc"><h3>Transport national</h3><p>Des départs depuis Ghardaïa vers toutes les wilayas, selon votre planning.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section id="refs">
-    <div class="wrap">
-      <h2>Ils nous font confiance</h2>
-      <p class="lead">Nos références parmi les grands acteurs de l’industrie algérienne.</p>
-      <div class="clients"><span>SONATRACH</span><span>ALFAPIPE</span></div>
-    </div>
-  </section>
-
-  <section id="apropos">
-    <div class="wrap about">
-      <div>
-        <h2>Une entreprise ancrée à Ghardaïa</h2>
-        <p>TRANS★STAR LAIOURATE est une entreprise de transport de marchandises spécialisée dans le poids lourd. Depuis plus de 13 ans, nous livrons des charges exigeantes pour des clients qui ne tolèrent ni retard ni approximation.</p>
-        <p>Notre force : une flotte importante, des équipes qui connaissent la route, et un suivi direct avec le gérant.</p>
-      </div>
-      <dl class="legal">
-        <dt>Registre de commerce</dt><dd>09/A/4315914-47-01</dd>
-        <dt>Matricule fiscal</dt><dd>197247010082234</dd>
-        <dt>Article d’imposition</dt><dd>46030401065</dd>
-      </dl>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap contact">
-      <div>
-        <h2>Parlons de votre transport</h2>
-        <p class="lead" style="margin-bottom:10px">Décrivez votre besoin, nous revenons vers vous rapidement avec un devis.</p>
-        <ul>
-          <li><b>Téléphone</b><a href="tel:+213697056401">06 97 05 64 01</a></li>
-          <li><b>WhatsApp</b><a href="https://wa.me/213697056401" target="_blank" rel="noopener">Écrire sur WhatsApp</a></li>
-          <li><b>E-mail</b><a href="mailto:tronsstar91@gmail.com">tronsstar91@gmail.com</a></li>
-          <li><b>Adresse</b>Ghardaïa, Algérie</li>
-        </ul>
-      </div>
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="#contact">
-        <input type="hidden" name="form-name" value="contact">
-        <p class="hp"><label>Ne pas remplir <input name="bot-field"></label></p>
-        <label>Nom et société<input type="text" name="nom" required autocomplete="name"></label>
-        <label>Téléphone<input type="tel" name="telephone" required autocomplete="tel"></label>
-        <label>Votre besoin (marchandise, départ, destination)<textarea name="message" required></textarea></label>
-        <button class="btn" type="submit">Envoyer ma demande</button>
-      </form>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span>© <span id="y">2026</span> TRANS★STAR LAIOURATE. Tous droits réservés.</span>
-    <span>Transport de marchandises, Ghardaïa</span>
-  </div>
-</footer>
-
-<a class="wa" href="https://wa.me/213697056401" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.200-1.400A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.100-1.100l-.3-.2-3 .8.8-2.900-.2-.3A8 8 0 1 1 12 20zm4.400-5.900c-.2-.1-1.400-.7-1.600-.8-.2-.1-.4-.1-.5.100l-.7.900c-.1.200-.3.200-.5.100-1.400-.7-2.300-1.200-3.200-2.800-.2-.4.200-.4.700-1.200.1-.2 0-.3 0-.4l-.7-1.700c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.100-.6.300-.2.300-.9.900-.9 2.100s.9 2.400 1 2.500c.1.200 1.800 2.800 4.400 3.800 1.600.6 2.200.7 3 .6.500-.1 1.400-.6 1.600-1.200.2-.6.200-1.100.1-1.200-.1-.1-.2-.2-.5-.3z"/></svg>
-</a>
-
-<script>document.getElementById('y').textContent=new Date().getFullYear();</script>
-</body>
+  </body>
 </html>
